@@ -28,7 +28,11 @@ loglevel gLoggingLevel = loglevel::fatal;
 bool gLoggingColour = true;
 bool gDebugReportEnabled = false;
 
+#ifdef __ANDROID__
+std::string gCLSPVPath = "/data/data/io.github.astarasikov.clvkandroid.clvktests/clspv";
+#else
 std::string gCLSPVPath = DEFAULT_CLSPV_BINARY_PATH;
+#endif
 
 static VkDebugReportCallbackEXT gVkDebugCallback;
 

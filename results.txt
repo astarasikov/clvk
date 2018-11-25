@@ -1,0 +1,46 @@
+Exynos9810 Samsung Galaxy S9 with ARM Mali G72 MP18 (CLVK).
+		06-09 04:03:23.450 1446-1446/io.github.astarasikov.clvkandroid.clvktests E/clvk-test: CLVK Intel BitonicSort START: void Java_io_github_astarasikov_clvkandroid_clvktests_MainActivity_TestCLVK(JNIEnv *, jobject)
+		06-09 04:03:23.450 1446-1446/io.github.astarasikov.clvkandroid.clvktests E/clvk-test: Platforms(1)
+		06-09 04:03:23.450 1446-1446/io.github.astarasikov.clvkandroid.clvktests E/clvk-test: [0] clvk
+		06-09 04:03:23.630 1446-1446/io.github.astarasikov.clvkandroid.clvktests E/clvk-test: Sort order is ascending
+		06-09 04:03:23.631 1446-1446/io.github.astarasikov.clvkandroid.clvktests E/clvk-test: Input size is 1024 items
+		06-09 04:03:23.631 1446-1446/io.github.astarasikov.clvkandroid.clvktests E/clvk-test: OpenCL data alignment is 4096 bytes.
+		06-09 04:03:23.631 1446-1446/io.github.astarasikov.clvkandroid.clvktests E/clvk-test: Executing OpenCL kernel...
+		06-09 04:03:23.728 1446-1446/io.github.astarasikov.clvkandroid.clvktests E/clvk-test: Executing reference...
+		06-09 04:03:23.728 1446-1446/io.github.astarasikov.clvkandroid.clvktests E/clvk-test: Performing verification...
+		06-09 04:03:23.728 1446-1446/io.github.astarasikov.clvkandroid.clvktests E/clvk-test: Verification succeeded.
+		06-09 04:03:23.728 1446-1446/io.github.astarasikov.clvkandroid.clvktests E/clvk-test: NDRange perf. counter time 96.818924 ms.
+
+Radeon RX480 with CLVK and Mesa RADV Vulkan driver.
+		intel_ocl_bitonic_sort/BitonicSort$ ./BitonicSort -p 0 -s 1024
+		./BitonicSort: /home/alexander/Documents/workspace/builds/gpu/opencl/clvk/build/libOpenCL.so.1: no version information available (required by ./BitonicSort)
+		WARNING: radv is not a conformant vulkan implementation, testing use only.
+		Platforms (1):
+		    [0] clvk [Selected]
+		Devices (1):
+		    [0] AMD RADV POLARIS10 (LLVM 6.0.0) [Selected]
+		Sort order is ascending
+		Input size is 1024 items
+		OpenCL data alignment is 4096 bytes.
+		Executing OpenCL kernel...
+		Executing reference...
+		Performing verification...
+		Verification succeeded.
+		NDRange perf. counter time 7.491112 ms.
+		intel_ocl_bitonic_sort/BitonicSort$ cat > ../../results.txt
+
+Radeon RX480 with Mesa and ROCm.
+		intel_ocl_bitonic_sort/BitonicSort$ ./BitonicSort -p 0 -s 1024
+		Platforms (2):
+		    [0] AMD Accelerated Parallel Processing [Selected]
+		    [1] Portable Computing Language
+		Devices (1):
+		    [0] gfx803 [Selected]
+		Sort order is ascending
+		Input size is 1024 items
+		OpenCL data alignment is 4096 bytes.
+		Executing OpenCL kernel...
+		Executing reference...
+		Performing verification...
+		Verification succeeded.
+		NDRange perf. counter time 0.651121 ms.

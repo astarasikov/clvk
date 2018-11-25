@@ -28,6 +28,10 @@
 #include "program.hpp"
 #include "utils.hpp"
 
+//XXX: hacks for ANDROID. please fix mkdtemp instead
+#include <sys/stat.h>
+#include <sys/types.h>
+
 struct membuf : public std::streambuf {
     membuf(const unsigned char *begin, const unsigned char *end) {
         auto sbegin = reinterpret_cast<char*>(const_cast<unsigned char*>(begin));
@@ -383,8 +387,24 @@ bool save_string_to_file(const std::string &fname, const std::string &text)
 cl_build_status cvk_program::compile_source()
 {
     // Create temporary folder
+#ifdef __ANDROID__
+    std::string tmp_template{"/data/data/io.github.astarasikov.clvkandroid.clvktests/clvk-XXXXXX"};
+#else
     std::string tmp_template{"clvk-XXXXXX"};
+#endif
+
+#if 0//def __ANDROID__
+    const char *out_dir = "/data/data/io.github.astarasikov.clvkandroid.clvktests/clvktmp";
+    std::string rcmd{"rm -rf "};
+    std::string out_dir_cp{out_dir};
+    rcmd += out_dir_cp;
+    std::system(rcmd.c_str());
+
+    int mkdir_ok = ::mkdir(out_dir, 0777);
+    const char *tmp = (mkdir_ok == 0) ? out_dir : NULL;
+#else
     const char* tmp = cvk_mkdtemp(tmp_template);
+#endif
     if (tmp == nullptr) {
         return CL_BUILD_ERROR;
     }
